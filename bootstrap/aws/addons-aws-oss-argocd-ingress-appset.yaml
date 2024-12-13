@@ -15,7 +15,7 @@ spec:
               values:
                 addonChart: argo-cd
                 # anything not staging or prod use this version
-                addonChartVersion: 5.46.4
+                addonChartVersion: 7.3.11
                 addonChartRepository: https://argoproj.github.io/argo-helm
               selector:
                 matchExpressions:
@@ -27,13 +27,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: 5.46.4
+                addonChartVersion: 7.3.11
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: 5.46.4
+                addonChartVersion: 7.3.11
   template:
     metadata:
       name: addon-{{.name}}-aws-{{.values.addonChart}}
@@ -69,9 +69,19 @@ spec:
                   annotations:
                     alb.ingress.kubernetes.io/scheme: "internet-facing"
                     alb.ingress.kubernetes.io/target-type: "ip"
-                    alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
+                    alb.ingress.kubernetes.io/backend-protocol: "HTTP" # TODO changed from HTTPS
                     alb.ingress.kubernetes.io/listen-ports: "[{\"HTTPS\":443}]"
                     alb.ingress.kubernetes.io/tags: "Environment=hub,GitOps=true"
+                    alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08" # TODO 75-82 added
+                    alb.ingress.kubernetes.io/group.order: "1"
+                    alb.ingress.kubernetes.io/healthcheck-healthy-threshold-count: "2"
+                    alb.ingress.kubernetes.io/healthcheck-interval-seconds: "30"
+                    alb.ingress.kubernetes.io/healthcheck-path: /
+                    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+                    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "5"
+                    alb.ingress.kubernetes.io/healthcheck-unhealthy-threshold-count: "2"
+                    #alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-west-2:022698001278:certificate/b1abf9e7-73b4-4099-bb3b-ec595dc3c61f"
+                    alb.ingress.kubernetes.io/certificate-arn: {{.metadata.annotations.argocd_cert}}
                   ingressClassName: "alb"
                   hosts: {{.metadata.annotations.argocd_hosts}}
                   tls:
