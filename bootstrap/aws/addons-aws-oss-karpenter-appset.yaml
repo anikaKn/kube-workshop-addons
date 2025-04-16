@@ -54,7 +54,7 @@ spec:
               - $values/{{metadata.annotations.addons_repo_basepath}}charts/addons/{{values.addonChart}}/setup/values.yaml
               - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
               - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
-            parameters: |
+            parameters: 
               - name: "nodes_setup.node_iam_role_name"
                 value: '{{metadata.annotations.karpenter_node_iam_role_name}}' ## тут може інший параметр
               - name: "nodes_setup.cluster_name"
@@ -62,7 +62,7 @@ spec:
               - name: "nodes_setup.environment"
                 value: '{{metadata.labels.environment}}'     
               - name: "nodepool.capacity_type"
-                value: '{{metadata.annotations.karpenter_capacity_type}}'          
+                value: '{{metadata.annotations.karpenter_capacity_type}}'        
         # - chart: '{{values.addonChart}}/{{values.addonChart}}'
         #   repoURL: '{{values.addonChartRepository}}'
         #   targetRevision: '{{values.addonChartVersion}}'
