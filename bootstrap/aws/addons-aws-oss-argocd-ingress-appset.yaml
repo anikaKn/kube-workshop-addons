@@ -90,7 +90,7 @@ spec:
                   enabled: true
                   isAWSALB: true
                   awsALB:
-                    serviceType: "ClusterIP"  # Instance mode needs type NodePort, IP mode needs type ClusterIP or NodePort
+                    serviceType: "ClusterIP"  # TODO : changed from ClusterIP .  Instance mode needs type NodePort, IP mode needs type ClusterIP or NodePort
                     backendProtocolVersion: "GRPC"  # This tells AWS to send traffic from the ALB using HTTP2. Can use gRPC as well if you want to leverage gRPC specific features
       destination:
         namespace: '{{default "argocd" .metadata.annotations.argocd_namespace}}'
