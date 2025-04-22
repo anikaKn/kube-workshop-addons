@@ -1,7 +1,10 @@
+# {{- if .Values.installCRDs }}
+# {{- $crds := (include "karpenter-setup.crds" . | fromYaml) }}
+# {{- range $crds }}
+# {{ toYaml . | nindent 0 }}
+# ---
+# {{- end }}
+# {{- end }}
 {{- if .Values.installCRDs }}
-{{- $crds := (include "karpenter-setup.crds" . | fromYaml) }}
-{{- range $crds }}
-{{ toYaml . | nindent 0 }}
----
-{{- end }}
+{{- include "karpenter-setup.crds" . }}
 {{- end }}
