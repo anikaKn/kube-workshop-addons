@@ -4,9 +4,6 @@ metadata:
   name: "default"
 spec:
   amiFamily: AmazonLinux2
-  instanceTypes:
-    - m5.large
-    - m5.medium
   subnetSelector:
     karpenter.sh/discovery: aknys
   securityGroupSelector:
