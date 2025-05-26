@@ -36,8 +36,8 @@ nodepool:
         duration: 8h
         nodes: "0"
   limits:
-    cpu: "10"
-    memory: "10Gi"
+    cpu: "100"
+    memory: "100Gi"
   weight: 10
 #clusterName: "aknys"  # Must match EKS cluster name
 #nodes_setup:
