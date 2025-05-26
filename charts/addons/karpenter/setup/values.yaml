@@ -45,7 +45,3 @@ nodepool:
 #clusterName: "aknys"  # Must match EKS cluster name
 #nodes_setup:
 #  node_iam_role_name: "karpenter-aknys-20250422131533562600000019"
-nodes_setup:
-  email: {{metadata.annotations.email}}
-  role: {{metadata.annotations.role}}
-  cluster_name: {{metadata.annotations.aws_cluster_name}}
