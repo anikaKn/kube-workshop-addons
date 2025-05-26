@@ -40,7 +40,7 @@ nodepool:
         nodes: "0"
   limits:
     cpu: "1000"
-  #  memory: "100Gi"
+    memory: "100Gi"
   weight: 10
 #clusterName: "aknys"  # Must match EKS cluster name
 #nodes_setup:
