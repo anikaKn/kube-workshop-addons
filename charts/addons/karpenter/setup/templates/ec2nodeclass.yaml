@@ -8,16 +8,16 @@ spec:
     - alias: al2@latest  # Use the latest EKS-optimized AL2 AMI
   subnetSelectorTerms:
     - tags:
-        karpenter.sh/discovery: aknys     # Replace with your actual tag value
+        karpenter.sh/discovery: {{ .Values.nodes_setup.cluster_name }}     # Replace with your actual tag value
   securityGroupSelectorTerms:
     - tags:
-        karpenter.sh/discovery: aknys     # Replace with your actual tag value
+        karpenter.sh/discovery: {{ .Values.nodes_setup.cluster_name }}     # Replace with your actual tag value
   # Optional: specify the IAM role or instance profile
-  role: "karpenter-aknys-20250526102039114300000007"  # Replace with your IAM role name
+  role: {{ .Values.nodes_setup.role }}  # Replace with your IAM role name
   # Optional: pass kubelet config
   tags: 
-    karpenter.sh/discovery: aknys
-    Owner: aknys@softserveinc.com
+    karpenter.sh/discovery: {{ .Values.nodes_setup.cluster_name }}
+    Owner: {{ .Values.nodes_setup.email }}
     Schedule: running
   kubelet:
     podsPerCore: 1  # in real project should be 2
