@@ -15,6 +15,10 @@ spec:
   # Optional: specify the IAM role or instance profile
   role: "karpenter-aknys-20250526102039114300000007"  # Replace with your IAM role name
   # Optional: pass kubelet config
+  tags: 
+    karpenter.sh/discovery: aknys
+    Owner: aknys@softserveinc.com
+    Schedule: running
   kubelet:
     podsPerCore: 1  # in real project should be 2
     maxPods: 20
