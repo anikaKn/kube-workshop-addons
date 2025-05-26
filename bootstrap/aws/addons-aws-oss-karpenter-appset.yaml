@@ -84,6 +84,7 @@ spec:
           repoURL: '{{values.addonChartRepository}}'
           targetRevision: 1.1.4 #'{{metadata.annotations.addons_repo_revision}}' #1.1.4 #'{{values.addonChartVersion}}'
           helm:
+            skipCrds: true
             releaseName: '{{values.addonChart}}'
             ignoreMissingValueFiles: true
             valueFiles:
