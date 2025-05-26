@@ -79,7 +79,7 @@ spec:
               - name: "nodes_setup.email"
                 value: '{{metadata.annotations.email}}'
               - name: "nodes_setup.role"
-                value: '{{metadata.annotations.role}}'
+                value: '{{metadata.annotations.karpenter_iam_role_arn}}'
               - name: "nodes_setup.environment"
                 value: '{{metadata.labels.environment}}'
               - name: "nodepool.capacity_type"
