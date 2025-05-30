@@ -79,12 +79,14 @@ spec:
                 tolerations:
                   - key: "CriticalAddonsOnly"
                     operator: "Exists"
-
               redis:
                 tolerations:
                   - key: "CriticalAddonsOnly"
                     operator: "Exists"
-
+                secretInit:
+                  tolerations:
+                    - key: "CriticalAddonsOnly"
+                      operator: "Exists"
       destination:
         namespace: '{{default "argocd" .metadata.annotations.argocd_namespace}}'
         name: '{{.name}}'
