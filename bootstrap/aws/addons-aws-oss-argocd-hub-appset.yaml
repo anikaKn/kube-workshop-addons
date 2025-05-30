@@ -79,6 +79,7 @@ spec:
                 tolerations:
                   - key: "CriticalAddonsOnly"
                     operator: "Exists"
+
               redis:
                 tolerations:
                   - key: "CriticalAddonsOnly"
@@ -87,6 +88,16 @@ spec:
                   tolerations:
                     - key: "CriticalAddonsOnly"
                       operator: "Exists"
+
+              dex:
+                tolerations:
+                  - key: "CriticalAddonsOnly"
+                    operator: "Exists"
+
+              notifications:
+                tolerations:
+                  - key: "CriticalAddonsOnly"
+                    operator: "Exists"
       destination:
         namespace: '{{default "argocd" .metadata.annotations.argocd_namespace}}'
         name: '{{.name}}'
