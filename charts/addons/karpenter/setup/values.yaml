@@ -12,9 +12,9 @@ nodepool:
     - key: "karpenter.k8s.aws/instance-category"
       operator: In
       values: ["t", "m", "c", "r"] 
-    - key: "karpenter.k8s.aws/instance-cpu"
-      operator: In
-      values: ["2", "4", "8"]
+    # - key: "karpenter.k8s.aws/instance-cpu"
+    #   operator: In
+    #   values: ["2", "4", "8"]
     - key: "karpenter.k8s.aws/instance-size"
       operator: In
       values: ["micro", "medium", "large"]
