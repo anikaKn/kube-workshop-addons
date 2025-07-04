@@ -61,7 +61,6 @@ spec:
                tolerations:Add commentMore actions
                   - key: "CriticalAddonsOnly"
                     operator: "Exists"
-                    effect: "NoSchedule"
                   - key: "CriticalAddonsOnly"
                     operator: "Equal"
                     value: "false"
