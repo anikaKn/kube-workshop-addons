@@ -97,7 +97,8 @@ spec:
                     kubernetes.io/ingress.class: "alb"
                     alb.ingress.kubernetes.io/scheme: "internet-facing"
                     alb.ingress.kubernetes.io/target-type: "ip"
-                    alb.ingress.kubernetes.io/backend-protocol: "GRPC"
+                    alb.ingress.kubernetes.io/backend-protocol: "HTTP"
+                    alb.ingress.kubernetes.io/backend-protocol-version: "GRPC"
                     alb.ingress.kubernetes.io/listen-ports: "[{\"HTTPS\":443}]"
                     alb.ingress.kubernetes.io/certificate-arn: {{.metadata.annotations.argocd_cert}}
                     alb.ingress.kubernetes.io/group.order: "2"
