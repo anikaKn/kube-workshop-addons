@@ -109,7 +109,7 @@ spec:
                   - hosts: {{.metadata.annotations.argocd_grpc_hosts}}
                   awsALB:
                     serviceType: "ClusterIP"  # TODO : changed from ClusterIP .  Instance mode needs type NodePort, IP mode needs type ClusterIP or NodePort
-                    backendProtocolVersion: "GRPC"  # This tells AWS to send traffic from the ALB using HTTP2. Can use gRPC as well if you want to leverage gRPC specific features
+                    backendProtocolVersion: "HTTP"  # This tells AWS to send traffic from the ALB using HTTP. Can use gRPC as well if you want to leverage gRPC specific features
                   service:
                     servicePort: 8080
       destination:
@@ -120,3 +120,4 @@ spec:
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true  # Big CRDs.
+
