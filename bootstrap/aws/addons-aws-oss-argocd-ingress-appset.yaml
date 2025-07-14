@@ -64,10 +64,8 @@ spec:
                     eks.amazonaws.com/role-arn: '{{.metadata.annotations.argocd_iam_role_arn}}'
                 service:
                   type: "ClusterIP"
-                  ports:
-                    - name: grpc
-                      port: 443
-                      targetPort: 8080
+                  grpcPort: 8080
+                  grpcPortName: "grpc"
                 ingress:
                   enabled: true
                   annotations:
@@ -112,7 +110,7 @@ spec:
                     serviceType: "ClusterIP"  # TODO : changed from ClusterIP .  Instance mode needs type NodePort, IP mode needs type ClusterIP or NodePort
                     backendProtocolVersion: "GRPC"  # This tells AWS to send traffic from the ALB using HTTP2. Can use gRPC as well if you want to leverage gRPC specific features
                   service:
-                    servicePort: 443
+                    servicePort: 8080
       destination:
         namespace: '{{default "argocd" .metadata.annotations.argocd_namespace}}'
         name: '{{.name}}'
