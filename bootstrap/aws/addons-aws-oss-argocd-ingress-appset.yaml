@@ -94,10 +94,25 @@ spec:
                 ingressGrpc:
                   enabled: true
                   isAWSALB: true
-                  ingressClassName: "alb" 
+                  ingressClassName: "alb"
+                  annotations:
+                    kubernetes.io/ingress.class: "alb"
+                    alb.ingress.kubernetes.io/scheme: "internet-facing"
+                    alb.ingress.kubernetes.io/target-type: "ip"
+                    alb.ingress.kubernetes.io/backend-protocol: "GRPC"
+                    alb.ingress.kubernetes.io/listen-ports: "[{\"HTTPS\":443}]"
+                    alb.ingress.kubernetes.io/certificate-arn: {{.metadata.annotations.argocd_cert}}
+                    alb.ingress.kubernetes.io/group.order: "2"
+                    alb.ingress.kubernetes.io/healthcheck-path: /
+                    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+                  hosts: {{.metadata.annotations.argocd_grpc_hosts}}
+                  tls:
+                  - hosts: {{.metadata.annotations.argocd_grpc_hosts}}
                   awsALB:
                     serviceType: "ClusterIP"  # TODO : changed from ClusterIP .  Instance mode needs type NodePort, IP mode needs type ClusterIP or NodePort
                     backendProtocolVersion: "GRPC"  # This tells AWS to send traffic from the ALB using HTTP2. Can use gRPC as well if you want to leverage gRPC specific features
+                  service:
+                    servicePort: 443
       destination:
         namespace: '{{default "argocd" .metadata.annotations.argocd_namespace}}'
         name: '{{.name}}'
