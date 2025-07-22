@@ -17,8 +17,8 @@ spec:
     budgets:
 {{ toYaml .Values.nodepool.disruption.budgets | indent 6 }}
   limits:
-    cpu: "{{ .Values.nodepool.limits.cpu }}"
-    memory: "{{ .Values.nodepool.limits.memory }}"
+    # cpu: "{{ .Values.nodepool.limits.cpu }}"
+    # memory: "{{ .Values.nodepool.limits.memory }}"
     instances: "{{ .Values.nodepool.limits.instances | default "3" }}"
   weight: {{ .Values.nodepool.weight }}
 
