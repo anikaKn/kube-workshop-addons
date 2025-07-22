@@ -20,8 +20,8 @@ spec:
     Owner: {{ .Values.nodes_setup.email }}
     Schedule: running
   kubelet:
-    podsPerCore: 1  # in real project should be 2
-    maxPods: 20
+    podsPerCore: 2  # in real project should be 2
+    maxPods: 100
     systemReserved:
       cpu: 100m
       memory: 100Mi
