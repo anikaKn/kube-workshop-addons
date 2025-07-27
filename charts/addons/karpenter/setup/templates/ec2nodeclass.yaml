@@ -17,6 +17,7 @@ spec:
   # Optional: pass kubelet config
   tags: 
     karpenter.sh/discovery: {{ .Values.nodes_setup.cluster_name }}
+    aws:eks:cluster-name: {{ .Values.nodes_setup.cluster_name }}
     Owner: {{ .Values.nodes_setup.email }}
     Schedule: running
   kubelet:
